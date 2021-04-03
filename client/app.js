@@ -17,6 +17,7 @@ socket.on('message', ({ author, content }) => addMessage(author, content));
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault();
   login();
+  socket.emit('login', userName)
 });
 
 function login() {
@@ -42,7 +43,7 @@ function sendMessage (userName, textField) {
   if (textField) {
     addMessage(userName, textField);
     socket.emit('message', {author: userName, content: textField});
-    messageContentInput.value = '';
+    messageContentInput.value = ''
   } else {
     window.alert('Please type your message')
   }
@@ -51,11 +52,11 @@ function sendMessage (userName, textField) {
 function addMessage(author, content) {
   const message = document.createElement('li');
 
-  message.classList.add('message message--received');
+  message.classList.add('message');
+  message.classList.add('message--received');
 
-  if (author === userName) {
-    message.classList.add('message--self');
-  }
+  if (author === userName) message.classList.add('message--self');
+  if (author == 'Chat Bot') message.classList.add('message--bot');
   message.innerHTML = `
     <h3 class="message__author">${userName === author ? 'You' : author }</h3>
     <div class="message__content">${content}</div>

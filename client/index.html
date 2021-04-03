@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Websocket Chat App</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -27,24 +28,7 @@
 
         <!-- messages list -->
         <ul class="messages-section__list" id="messages-list">
-          <li class="message">
-            <h3 class="message__author">John Doe</h3>
-            <div class="message__content">
-              Hello!
-            </div>
-          </li>
-          <li class="message message--self">
-            <h3 class="message__author">You</h3>
-            <div class="message__content">
-              Hi!
-            </div>
-          </li>
-          <li class="message message--self message--received">
-            <h3 class="message__author">You</h3>
-            <div class="message__content">
-              It's great to see you again!
-            </div>
-          </li>
+          <!-- messages content list-->
         </ul>
 
         <!-- messages form -->
@@ -56,7 +40,7 @@
       </section>
 
     </main>
-    <script src="app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
