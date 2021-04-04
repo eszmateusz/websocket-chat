@@ -25,16 +25,19 @@ io.on('connection', (socket) => {
   });
 
   socket.on('login', (userName) => {
-    users.push({name: userName, id: socket.id})
+    users.push({name: userName, id: socket.id});
     socket.broadcast.emit('message', {author: 'Chat Bot', content: userName + " has joined the conversation"});
-    console.log('Client: ', socket.id, " is logged in as: ", userName)
-  })
+    console.log('Client: ', socket.id, " is logged in as: ", userName);
+  });
 
   socket.on('disconnect', () => { 
     const myUser = users.find(user => user.id === socket.id);
-    socket.broadcast.emit('message', {author: 'Chat Bot', content: myUser.name + " has left the conversation"});
-    const indexOf = users.indexOf({id: socket.id});
-    users.splice(indexOf, 1)
+    if (myUser) {
+      const indexOf = users.indexOf(myUser);
+      users.splice(indexOf, 1);
+      socket.broadcast.emit('message', {author: 'Chat Bot', content: myUser.name + " has left the conversation"});
+      console.log('Oh, socket ' + socket.id + ' has left');
+    }
   });
 });
 

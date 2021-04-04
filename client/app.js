@@ -17,7 +17,7 @@ socket.on('message', ({ author, content }) => addMessage(author, content));
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault();
   login();
-  socket.emit('login', userName)
+  socket.emit('login', userName);
 });
 
 function login() {
@@ -36,18 +36,18 @@ function login() {
 
 addMessageForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  sendMessage(userName, messageContentInput.value)
-})
+  sendMessage(userName, messageContentInput.value);
+});
 
 function sendMessage (userName, textField) {
   if (textField) {
     addMessage(userName, textField);
     socket.emit('message', {author: userName, content: textField});
-    messageContentInput.value = ''
+    messageContentInput.value = '';
   } else {
-    window.alert('Please type your message')
+    window.alert('Please type your message');
   }
-}
+};
 
 function addMessage(author, content) {
   const message = document.createElement('li');
